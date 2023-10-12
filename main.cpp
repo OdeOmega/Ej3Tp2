@@ -95,12 +95,16 @@ int main() {
         int A = 0;
         int B = ANS.first;
         while(A != B){
-            A = ANS.first;
-            B = (A+B)/2;
             for(int i = 0; i<conexiones.size(); i++){
                 conexiones[i].first = conexiones[i].fourth-((A+B)/2)*conexiones[i].fifth;
             }
             ANS = kruskal(conexiones);
+            if(ANS.first >= 0){
+                A = (A+B)/2;
+            }
+            else{
+                B = (B+A)/2;
+            }
         }
         cout << ANS.second << " " << ANS.third << endl;
     }
