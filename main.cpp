@@ -58,6 +58,7 @@ struct DSU {
 
 };
 
+
 triple kruskal(vector<quintuple> conexiones){
     long long C = 0;
     long long D = 0;
