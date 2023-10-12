@@ -101,7 +101,7 @@ int main() {
                 A = (A+B)/2 + 1;
             }
             else{
-                B = (B+A)/2;
+                B = (A+B)/2;
             }
         }
         cout << ANS.second << " " << ANS.third << endl;
