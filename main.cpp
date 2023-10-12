@@ -92,12 +92,12 @@ int main() {
         triple ANS = kruskal(conexiones);
         int A = 0;
         int B = ANS.first;
-        while(B-A > 1){
+        while(A != B){
             for(int j = 0; j<conexiones.size(); j++){
-                conexiones[i].first = conexiones[i].fourth-((A+B)/2)*conexiones[i].fifth;
+                conexiones[i].first = conexiones[i].fourth - ((A+B)/2)*conexiones[i].fifth;
             }
             ANS = kruskal(conexiones);
-            if(ANS.first >= 0){
+            if(ANS.first > 0){
                 A = (A+B)/2 + 1;
             }
             else{
