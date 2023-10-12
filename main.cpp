@@ -94,7 +94,7 @@ int main() {
         triple ANS = kruskal(conexiones);
         int A = 0;
         int B = ANS.first;
-        while(A != B){
+        while(B-A > 1){
             for(int i = 0; i<conexiones.size(); i++){
                 conexiones[i].first = conexiones[i].fourth-((A+B)/2)*conexiones[i].fifth;
             }
@@ -106,6 +106,17 @@ int main() {
                 B = (B+A)/2;
             }
         }
+        if (ANS.first >= 0) {
+            for (int i = 0; i < conexiones.size(); i++) {
+                conexiones[i].first = conexiones[i].fourth - A * conexiones[i].fifth;
+            }
+        } else {
+            for (int i = 0; i < conexiones.size(); i++) {
+                conexiones[i].first = conexiones[i].fourth - B * conexiones[i].fifth;
+            }
+        }
+        ANS = kruskal(conexiones);
+
         cout << ANS.second << " " << ANS.third << endl;
     }
 }
