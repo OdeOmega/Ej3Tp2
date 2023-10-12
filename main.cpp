@@ -17,11 +17,18 @@ struct quintuple {
     int fifth;
 
     bool operator<(const quintuple& other) const {
-        if (first > other.first)
+        if (first > other.first) {
             return true;
-        else if (first < other.first)
+        }
+        else if (first < other.first) {
             return false;
-        return fourth < other.fourth;
+        }
+        else if ((fifth - fourth) >= (other.fifth - other.fourth)) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 };
@@ -108,3 +115,4 @@ int main() {
         cout << ANS.second << " " << ANS.third << endl;
     }
 }
+
