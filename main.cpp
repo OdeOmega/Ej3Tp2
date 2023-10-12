@@ -1,7 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <climits>
-#include<list>
 #include <algorithm>
 using namespace std;
 
@@ -95,28 +93,17 @@ int main() {
         int A = 0;
         int B = ANS.first;
         while(B-A > 1){
-            for(int i = 0; i<conexiones.size(); i++){
+            for(int j = 0; j<conexiones.size(); j++){
                 conexiones[i].first = conexiones[i].fourth-((A+B)/2)*conexiones[i].fifth;
             }
             ANS = kruskal(conexiones);
             if(ANS.first >= 0){
-                A = (A+B)/2;
+                A = (A+B)/2 + 1;
             }
             else{
                 B = (B+A)/2;
             }
         }
-        if (ANS.first >= 0) {
-            for (int i = 0; i < conexiones.size(); i++) {
-                conexiones[i].first = conexiones[i].fourth - A * conexiones[i].fifth;
-            }
-        } else {
-            for (int i = 0; i < conexiones.size(); i++) {
-                conexiones[i].first = conexiones[i].fourth - B * conexiones[i].fifth;
-            }
-        }
-        ANS = kruskal(conexiones);
-
         cout << ANS.second << " " << ANS.third << endl;
     }
 }
