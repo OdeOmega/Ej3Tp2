@@ -93,17 +93,19 @@ int main() {
         int A = 0;
         int B = ANS.first;
         while(A != B){
-            for(int j = 0; j<conexiones.size(); j++){
-                conexiones[i].first = conexiones[i].fourth - ((A+B)/2)*conexiones[i].fifth;
+            int mitad = (A+B)/2;
+            for(int p = 0; p<conexiones.size(); p++){
+                conexiones[p].first = conexiones[p].fourth - mitad*conexiones[p].fifth;
             }
             ANS = kruskal(conexiones);
-            if(ANS.first > 0){
-                A = (A+B)/2 + 1;
+            if(ANS.first >= 0){
+                A = mitad+1;
             }
             else{
-                B = (A+B)/2;
+                B = mitad;
             }
         }
+
         cout << ANS.second << " " << ANS.third << endl;
     }
 }
