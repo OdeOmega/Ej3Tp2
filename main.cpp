@@ -21,7 +21,7 @@ struct quintuple {
             return true;
         else if (first < other.first)
             return false;
-        return second > other.second;
+        return fourth < other.fourth;
     }
 
 };
@@ -64,7 +64,6 @@ triple kruskal(vector<quintuple> conexiones){
     sort(conexiones.begin(),conexiones.end());
     DSU DSU(conexiones.size());
 
-    int aristas = 0;
 
     for(int i = 0; i<conexiones.size(); i++){
         if(DSU.find(conexiones[i].second) != DSU.find(conexiones[i].third)){
@@ -72,7 +71,6 @@ triple kruskal(vector<quintuple> conexiones){
             C = C + conexiones[i].first;
             D = D + conexiones[i].fourth;
             R = R + conexiones[i].fifth;
-            aristas++;
         }
     }
     return {C,D,R};
@@ -95,7 +93,8 @@ int main() {
         while(A != B){
             int mitad = (A+B)/2;
             for(int p = 0; p<conexiones.size(); p++){
-                conexiones[p].first = conexiones[p].fourth - mitad*conexiones[p].fifth;
+                int temp = conexiones[p].fourth - (mitad * conexiones[p].fifth);
+                conexiones[p].first = temp;
             }
             ANS = kruskal(conexiones);
             if(ANS.first >= 0){
