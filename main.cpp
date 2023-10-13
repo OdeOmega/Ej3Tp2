@@ -4,13 +4,13 @@
 using namespace std;
 
 struct triple {
-    long long first;
+    float first;
     long long second;
     long long third;
 };
 
 struct quintuple {
-    int first;
+    float first;
     int second;
     int third;
     int fourth;
@@ -65,7 +65,7 @@ struct DSU {
 
 
 triple kruskal(vector<quintuple> conexiones){
-    long long C = 0;
+    float C = 0;
     long long D = 0;
     long long R = 0;
     sort(conexiones.begin(),conexiones.end());
@@ -92,15 +92,15 @@ int main() {
         vector<quintuple> conexiones;
         for (int j = 0; j < cantConexiones; j++) {
             cin >> ed1 >> ed2 >> d >> r;
-            conexiones.push_back({d,ed1-1,ed2-1,d,r});
+            conexiones.push_back({static_cast<float>(d),ed1-1,ed2-1,d,r});
         }
         triple ANS = kruskal(conexiones);
-        int A = 0;
-        int B = ANS.first;
-        while(A != B){
-            int mitad = (A+B)/2;
+        float A = 0;
+        float B = ANS.first;
+        while(B-A > 0.0001){
+            float mitad = (A+B)/2;
             for(int p = 0; p<conexiones.size(); p++){
-                int temp = conexiones[p].fourth - (mitad * conexiones[p].fifth);
+                float temp = static_cast<float>(conexiones[p].fourth) - (mitad * static_cast<float>(conexiones[p].fifth));
                 conexiones[p].first = temp;
             }
             ANS = kruskal(conexiones);
@@ -111,8 +111,8 @@ int main() {
                 B = mitad;
             }
         }
-
         cout << ANS.second << " " << ANS.third << endl;
     }
+    return 0;
 }
 
