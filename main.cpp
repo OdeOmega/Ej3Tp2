@@ -105,7 +105,7 @@ int main() {
             }
             ANS = kruskal(conexiones);
             if(ANS.first >= 0){
-                A = mitad+1;
+                A = mitad;
             }
             else{
                 B = mitad;
