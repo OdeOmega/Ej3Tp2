@@ -76,6 +76,24 @@ triple kruskal(vector<quintuple> conexiones){
         if(DSU.find(conexiones[i].second) != DSU.find(conexiones[i].third)){
             DSU.unite(conexiones[i].second,conexiones[i].third);
             C = C + conexiones[i].first;
+        }
+    }
+    return {C,D,R};
+
+}
+
+triple kruskal2(vector<quintuple> conexiones){
+    float C = 0;
+    long long D = 0;
+    long long R = 0;
+    sort(conexiones.begin(),conexiones.end());
+    DSU DSU(conexiones.size());
+
+
+    for(int i = 0; i<conexiones.size(); i++){
+        if(DSU.find(conexiones[i].second) != DSU.find(conexiones[i].third)){
+            DSU.unite(conexiones[i].second,conexiones[i].third);
+            C = C + conexiones[i].first;
             D = D + conexiones[i].fourth;
             R = R + conexiones[i].fifth;
         }
@@ -111,6 +129,7 @@ int main() {
                 B = mitad;
             }
         }
+        ANS = kruskal2(conexiones);
         cout << ANS.second << " " << ANS.third << endl;
     }
     return 0;
