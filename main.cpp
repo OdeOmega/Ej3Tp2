@@ -23,10 +23,10 @@ struct quintuple {
         else if (first < other.first) {
             return false;
         }
-        else if ((fifth - fourth) >= (other.fifth - other.fourth)) {
+        else if ((fifth - fourth) > (other.fifth - other.fourth)) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
